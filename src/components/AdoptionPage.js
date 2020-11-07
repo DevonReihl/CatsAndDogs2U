@@ -32,22 +32,23 @@ export default class AdoptionPage extends React.Component {
       )
   }
 
-  handleCatClick( cat) {
+  handleCatClick(cat) {
     console.log('YOU ADOPTED A CAT', cat)
-    fetch(`${config.API_ENDPOINT}`, {
+    fetch(`${config.API_ENDPOINT}/pets`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
       },
-      body: { 'type': 'cat'}  
+      body: { 'type': 'cats'}  
     })
-    .then(res => {
-      if(!res.ok)
-      return res.json().then(e => Promise.reject(e))
-    })
-    .then(() => {
-      this.setState(cat)
-    })
+    .then(console.log("Did I get through the promise"))
+    // .then(res => {
+    //   if(!res.ok)
+    //   return res.json().then(e => Promise.reject(e))
+    // })
+    // .then(() => {
+    //   this.setState(cat)
+    // })
   }
 
   handleDogClick(type) {
