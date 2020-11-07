@@ -29,7 +29,7 @@ export default class AddAdopter extends React.Component {
       return res.json().then(e => Promise.reject(e))
     })
     .then( 
-      
+      this.props.history.push('/adopt')
     )
     .catch(error => {
       console.error({ error })
@@ -43,7 +43,7 @@ export default class AddAdopter extends React.Component {
       
         <div>
           <label htmlFor='name'>Name: </label>
-          <input type='text' name='name'/>
+          <input type='text' name='name' minLength='5' required/>
         </div>
         <div>
         <Link to={`/adopt`}>
