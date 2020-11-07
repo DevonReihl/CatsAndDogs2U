@@ -32,19 +32,26 @@ export default class AdoptionPage extends React.Component {
       )
   }
 
-  handleCatClick() {
-    console.log('YOU ADOPTED A CAT')
+  handleCatClick( cat) {
+    console.log('YOU ADOPTED A CAT', cat)
     fetch(`${config.API_ENDPOINT}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
       },
+      body: { 'type': 'cat'}  
     })
-    .then()
+    .then(res => {
+      if(!res.ok)
+      return res.json().then(e => Promise.reject(e))
+    })
+    .then(() => {
+      this.setState(cat)
+    })
   }
 
-  handleDogClick() {
-    console.log('YOU ADOPTED A DOG')
+  handleDogClick(type) {
+    console.log('YOU ADOPTED A DOG', type)
   }
 
   renderPeople =() => {
@@ -89,7 +96,7 @@ export default class AdoptionPage extends React.Component {
               <button
                 className="adopter"
                 type="button"
-                onClick={() => this.handleCatClick()}
+                onClick={() => this.handleCatClick(cat)}
               >Adopt Me!
               </button>
             </main>
@@ -105,14 +112,14 @@ export default class AdoptionPage extends React.Component {
               <h3>More about {dog.name}</h3> 
               <ul className="animal-attributes">
                 <li className="pet-age">{dog.age} years</li>  
-                <li className="pet-breed">G{dog.breed}</li> 
+                <li className="pet-breed">{dog.breed}</li> 
                 <li className="pet-descrip">{dog.description}</li>
                 <li className="pet-story">{dog.story}</li>  
               </ul>
               <button
                 className="adopter"
                 type="button"
-                onClick={() => this.handleDogClick()}
+                onClick={() => this.handleDogClick(dog)}
               >Adopt Me!
                 
               </button>
