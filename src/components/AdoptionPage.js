@@ -1,6 +1,7 @@
 import React from 'react'
 import ApiService from '../ApiService'
 import config from '../config'
+import { Link } from 'react-router-dom'
 
 
 export default class AdoptionPage extends React.Component {
@@ -21,6 +22,9 @@ export default class AdoptionPage extends React.Component {
           })
         }
       )
+      .catch(error => {
+        console.error({ error })
+      })
     ApiService.getPeople()
       .then(
         people => {
@@ -30,29 +34,57 @@ export default class AdoptionPage extends React.Component {
         }
 
       )
+      .catch(error => {
+        console.error({ error })
+      })
   }
 
   handleCatClick(cat) {
-    console.log('YOU ADOPTED A CAT', cat)
+    const removeCat = {
+       type: "cats"
+    }
     fetch(`${config.API_ENDPOINT}/pets`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
       },
-      body: { 'type': 'cats'}  
+      body: JSON.stringify(removeCat)
     })
-    .then(console.log("Did I get through the promise"))
-    // .then(res => {
-    //   if(!res.ok)
-    //   return res.json().then(e => Promise.reject(e))
-    // })
-    // .then(() => {
-    //   this.setState(cat)
-    // })
+    .then(res => {
+      if(!res.ok)
+      return res.json().then(e => Promise.reject(e))
+    })
+    .then(() => {
+      return this.componentDidMount()
+      
+    })
+    .catch(error => {
+      console.error({ error })
+    })
   }
 
-  handleDogClick(type) {
-    console.log('YOU ADOPTED A DOG', type)
+  handleDogClick(dog) {
+    const removeDog = {
+      type: "dogs"
+   }
+   fetch(`${config.API_ENDPOINT}/pets`, {
+     method: 'DELETE',
+     headers: {
+       'content-type': 'application/json'
+     },
+     body: JSON.stringify(removeDog)
+   })
+   .then(res => {
+     if(!res.ok)
+     return res.json().then(e => Promise.reject(e))
+   })
+   .then(() => {
+     return this.componentDidMount()
+     
+   })
+   .catch(error => {
+    console.error({ error })
+  })
   }
 
   renderPeople =() => {
@@ -77,8 +109,10 @@ export default class AdoptionPage extends React.Component {
           <h1>Petful</h1>
           <h3>Take me to my "Furever" home!</h3>
           <ul>
+            <li><h4>Next in line is: </h4></li>
             {this.renderPeople()}
           </ul>
+          <Link to ='/adopter'>Ready to Adopt?</Link>
           <section className="animal">
             <header>
               <h2 className="animal-name">
@@ -89,10 +123,10 @@ export default class AdoptionPage extends React.Component {
             <main>
               <h3>More about {cat.name}</h3> 
               <ul className="animal-attributes"> 
-                <li className="pet-age">{cat.age}</li>  
-                <li className="pet-breed">{cat.breed}</li> 
-                <li className="pet-descrip">{cat.description}</li>
-                <li className="pet-story">{cat.story}</li>  
+                <li className="pet-age">Age: {cat.age}</li>  
+                <li className="pet-breed">Breed: {cat.breed}</li> 
+                <li className="pet-descrip">Descr: {cat.description}</li>
+                <li className="pet-story">Story: {cat.story}</li>  
               </ul>
               <button
                 className="adopter"
@@ -112,10 +146,10 @@ export default class AdoptionPage extends React.Component {
             <main>
               <h3>More about {dog.name}</h3> 
               <ul className="animal-attributes">
-                <li className="pet-age">{dog.age} years</li>  
-                <li className="pet-breed">{dog.breed}</li> 
-                <li className="pet-descrip">{dog.description}</li>
-                <li className="pet-story">{dog.story}</li>  
+                <li className="pet-age">Age: {dog.age} years</li>  
+                <li className="pet-breed">Breed: {dog.breed}</li> 
+                <li className="pet-descrip">Descr: {dog.description}</li>
+                <li className="pet-story">Story: {dog.story}</li>  
               </ul>
               <button
                 className="adopter"
