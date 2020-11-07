@@ -1,6 +1,7 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: whitesmoke;
 }
 h1 {
   font-size:50px;
@@ -24,3 +25,17 @@ h1 {
   transform: translate(-50%, -50%);
   color: white;
 }
+
+
+section.animal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
+  flex-direction: row;
+  width: 100%;
+  min-height: 200px;
+  padding: 6% 0;
+  
+}
+
