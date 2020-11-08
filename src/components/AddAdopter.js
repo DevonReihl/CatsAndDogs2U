@@ -42,8 +42,8 @@ export default class AddAdopter extends React.Component {
       <form  onSubmit={this.handleAddAdopter}>
       
         <div>
-          <label htmlFor='name'>Name: </label>
-          <input type='text' name='name' minLength='5' required/>
+          <label htmlFor='name' placeholder='Your name..'>Name: </label>
+          <input type='text' name='name' minLength='5' required />
         </div>
         <div>
         <Link to={`/adopt`}>

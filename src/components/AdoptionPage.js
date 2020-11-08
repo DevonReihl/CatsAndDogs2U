@@ -1,5 +1,5 @@
 import React from 'react'
-import ApiService from '../ApiService'
+import PetService from '../PetService'
 import config from '../config'
 import { Link } from 'react-router-dom'
 
@@ -9,11 +9,19 @@ export default class AdoptionPage extends React.Component {
     cat: {},
     dog: {},
     people: [],
-    loading: true
+    timer: null,
+    loading: true,
+    usersQ: [
+      { name: 'Dean' },
+      { name: 'Sam' },
+      { name: 'Cass' },
+      { name: 'Crowley' },
+      { name: 'Jo' },
+    ],
   }
 
   componentDidMount() {
-    ApiService.getPets()
+    PetService.getPets()
       .then(
         pets => {
           this.setState({
@@ -25,7 +33,7 @@ export default class AdoptionPage extends React.Component {
       .catch(error => {
         console.error({ error })
       })
-    ApiService.getPeople()
+    PetService.getPeople()
       .then(
         people => {
           this.setState({
@@ -61,6 +69,9 @@ export default class AdoptionPage extends React.Component {
     .catch(error => {
       console.error({ error })
     })
+
+    //Can refactor to DRY up and use PetService
+    // PetService.getPets(cat)
   }
 
   handleDogClick(dog) {
@@ -86,6 +97,32 @@ export default class AdoptionPage extends React.Component {
     console.error({ error })
   })
   }
+
+  
+  // handleAddPeople = e => {
+  //   e.preventDefault()
+  //   const newAdopter = {
+  //     name: //interval list, 
+  //   }
+
+  //   fetch(`${config.API_ENDPOINT}/people`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify(newAdopter)
+  //   })
+  //   .then(res => {
+  //     if(!res.ok)
+  //     return res.json().then(e => Promise.reject(e))
+  //   })
+  //   .then( 
+  //     this.props.history.push('/adopt')
+  //   )
+  //   .catch(error => {
+  //     console.error({ error })
+  //   })
+  // }
 
   renderPeople =() => {
     let people = this.state.people
@@ -125,7 +162,7 @@ export default class AdoptionPage extends React.Component {
               <ul className="animal-attributes"> 
                 <li className="pet-age">Age: {cat.age}</li>  
                 <li className="pet-breed">Breed: {cat.breed}</li> 
-                <li className="pet-descrip">Descr: {cat.description}</li>
+                <li className="pet-descrip">Desc: {cat.description}</li>
                 <li className="pet-story">Story: {cat.story}</li>  
               </ul>
               <button
@@ -148,7 +185,7 @@ export default class AdoptionPage extends React.Component {
               <ul className="animal-attributes">
                 <li className="pet-age">Age: {dog.age} years</li>  
                 <li className="pet-breed">Breed: {dog.breed}</li> 
-                <li className="pet-descrip">Descr: {dog.description}</li>
+                <li className="pet-descrip">Desc: {dog.description}</li>
                 <li className="pet-story">Story: {dog.story}</li>  
               </ul>
               <button
