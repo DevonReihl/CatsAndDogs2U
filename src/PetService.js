@@ -33,7 +33,7 @@ const ApiService = {
               : name
       )
   },
-  
+  //refactor to do cat or dog??
   removePersonAndPet(type) {
     const animalToRemove = {
       type: `${type}`

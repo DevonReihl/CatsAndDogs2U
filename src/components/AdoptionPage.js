@@ -10,6 +10,7 @@ export default class AdoptionPage extends React.Component {
     people: [],
     name: '',
     adopter: '',
+    adopted: false,
     loading: false,
     
   }
@@ -125,9 +126,9 @@ export default class AdoptionPage extends React.Component {
       let dogOrCat = Math.floor(Math.random()* 2)
       let type= ''
       if (dogOrCat ===0) {
-        type = 'dog'
+        type = 'dogs'
       }else {
-        type = 'cat'
+        type = 'cats'
       }
 
       PetService.removePersonAndPet(type)
@@ -135,8 +136,8 @@ export default class AdoptionPage extends React.Component {
         PetService.getPets()
         .then((res) => {
           this.setState({
-            dogs: res.dogs,
-            cats: res.cats,
+            dog: res.dog,
+            cat: res.cat,
           })
         })
         .catch(error => {
@@ -194,12 +195,34 @@ export default class AdoptionPage extends React.Component {
 
   handleAdoption = (type) => {
     PetService.removePersonAndPet(type)
-    .then((res) => {
-      this.componentDidMount()
-    })
-    .catch(error => {
-      console.error({ error })
-    })
+      .then((res) => {
+        this.setState({adopted: true})
+        PetService.getPets()
+        .then((res) => {
+          this.setState({
+            dog: res.dog,
+            cat: res.cat,
+          })
+        })
+        .catch(error => {
+          console.error({ error })
+        })
+        PetService.getPeople()
+        .then((res) => {
+          this.setState({
+            people: res
+          })
+        })
+        .catch(error => {
+          console.error({ error })
+        })
+      })
+  }
+
+  adoptedRender() {
+      return (
+        <h2>Congrats you just adopted your very own pet!</h2>
+        )
   }
 
 
@@ -248,7 +271,10 @@ export default class AdoptionPage extends React.Component {
                   Ready to Adopt?
                 </button>
               </form>
+
+              {this.state.adopted ? (<div>{this.adoptedRender()}<br /></div>): (<div></div>)}
           <section className="animal">
+            
             <header>
               <h2 className="animal-name">
                 {cat.name}
@@ -267,7 +293,7 @@ export default class AdoptionPage extends React.Component {
                   <button
                     className="button"
                     type="button"
-                    onClick={(e) => this.handleAdoption(cat)}
+                    onClick={(e) => this.handleAdoption('cats')}
                   >
                     Adopt Me!
                   </button>
@@ -293,7 +319,7 @@ export default class AdoptionPage extends React.Component {
                   <button
                     className="button"
                     type="button"
-                    onClick={(e) => this.handleAdoption(dog)}
+                    onClick={(e) => this.handleAdoption('dogs')}
                   >
                     Adopt Me!
                   </button>
