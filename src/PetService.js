@@ -34,7 +34,17 @@ const ApiService = {
         )
   },
   
-  //Can refactor to put POST and DELETE in here for better use and code later
+  removePersonAndPet(type) {
+    return fetch(`${config.API_ENDPOINT}/pets/${type}`, {
+      method: 'DELETE',
+    })
+    .then(res =>
+      (!res.ok) 
+          ? res.json().then((e) => Promise.reject(e)) 
+          : res.json()
+  )
+
+  }
 
 
 }
