@@ -21,28 +21,31 @@ const ApiService = {
 
   addPerson(name) {
     return fetch(`${config.API_ENDPOINT}/people`, {
-        method: "POST",
+        method: 'POST',
         headers: {
-            "Content-Type": "application/json",
+            'content-type': 'application/json',
         },
-        body: JSON.stringify({person: name,}),
+        body: JSON.stringify({ name,}),
     })
-        .then(res =>
-            (!res.ok) 
-                ? res.json().then((e) => Promise.reject(e)) 
-                : res.json()
-        )
+      .then(res =>
+          (!res.ok) 
+              ? res.json().then((e) => Promise.reject(e)) 
+              : name
+      )
   },
   
   removePersonAndPet(type) {
-    return fetch(`${config.API_ENDPOINT}/pets/${type}`, {
+    const animalToRemove = {
+      type: `${type}`
+    }
+    return fetch(`${config.API_ENDPOINT}/pets`, {
       method: 'DELETE',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(animalToRemove)
     })
-    .then(res =>
-      (!res.ok) 
-          ? res.json().then((e) => Promise.reject(e)) 
-          : res.json()
-  )
+    
 
   }
 

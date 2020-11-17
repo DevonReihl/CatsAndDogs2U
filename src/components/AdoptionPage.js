@@ -119,6 +119,7 @@ export default class AdoptionPage extends React.Component {
         name: '',
       })
     })
+    
 
     this.timeout = setInterval(() => {
       let dogOrCat = Math.floor(Math.random()* 2)
@@ -141,6 +142,15 @@ export default class AdoptionPage extends React.Component {
         .catch(error => {
           console.error({ error })
         })
+        PetService.getPeople()
+        .then((res) => {
+          this.setState({
+            people: res
+          })
+        })
+        .catch(error => {
+          console.error({ error })
+        })
       })
     }, 5000)
   }
@@ -157,7 +167,12 @@ export default class AdoptionPage extends React.Component {
         'Cass',
         'Sam',
         'Crowley',
-        'Ruby'
+        'Ruby',
+        'Jo',
+        'Ellen',
+        'Gabriel',
+        'Jack',
+        'Lucifer'
       ]
 
       const randomPerson = 
@@ -216,7 +231,7 @@ export default class AdoptionPage extends React.Component {
           </ul>
           <form
                 className="add-to-list"
-                onSubmit={(e) => this.handleAddToList(e)}
+                onSubmit={(e) => this.handleAddToQueue(e)}
               >
                 <label htmlFor="name">Enter your name to get in line!</label>
                 <br />
@@ -248,13 +263,13 @@ export default class AdoptionPage extends React.Component {
                 <li className="pet-descrip">Desc: {cat.description}</li>
                 <li className="pet-story">Story: {cat.story}</li>  
               </ul>
-              {this.state.loggedInUser === this.state.people[0] && (
+              {this.state.adopter === this.state.people[0] && (
                   <button
                     className="button"
                     type="button"
-                    onClick={(e) => this.handleAdoption('cat')}
+                    onClick={(e) => this.handleAdoption(cat)}
                   >
-                    Adopt me!
+                    Adopt Me!
                   </button>
                 )}
             </main>
@@ -274,13 +289,13 @@ export default class AdoptionPage extends React.Component {
                 <li className="pet-descrip">Desc: {dog.description}</li>
                 <li className="pet-story">Story: {dog.story}</li>  
               </ul>
-              {this.state.loggedInUser === this.state.people[0] && (
+              {this.state.adopter === this.state.people[0] && (
                   <button
                     className="button"
                     type="button"
-                    onClick={(e) => this.handleAdoption('dog')}
+                    onClick={(e) => this.handleAdoption(dog)}
                   >
-                    Adopt!
+                    Adopt Me!
                   </button>
                 )}
             </main>
