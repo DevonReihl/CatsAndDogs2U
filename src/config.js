@@ -1,6 +1,6 @@
 export default {
-  API_ENDPOINT: //`https://limitless-waters-65412.herokuapp.com`  
-  `http://localhost:8000`
+  API_ENDPOINT: `https://cryptic-reaches-69979.herokuapp.com`  
+  // `http://localhost:8000`
 }
 
 
