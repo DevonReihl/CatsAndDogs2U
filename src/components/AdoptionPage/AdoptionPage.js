@@ -212,7 +212,7 @@ export default class AdoptionPage extends React.Component {
                 className="add-to-list"
                 onSubmit={(e) => this.handleAddToQueue(e)}
               >
-                <label htmlFor="name">Enter your name to get in line!</label>
+                <label htmlFor="name-input">Enter your name to get in line!</label>
                 <br />
                 <input
                   type="text"
@@ -231,13 +231,13 @@ export default class AdoptionPage extends React.Component {
               {this.state.adopted ? (<div>{this.adoptedRender()}<br /></div>): (
           <section className="animal">
             <div className='cat'>
-              <header>
+              <div>
                 <h2 className="animal-name">
                   {cat.name}
                 </h2>
                 <img src={cat.imageURL} alt='' />  
-              </header>
-              <main>
+              </div>
+              <div>
                 <h3>More about {cat.name}</h3> 
                 <ul className="animal-attributes"> 
                   <li className="pet-age">Age: {cat.age}</li>  
@@ -254,17 +254,17 @@ export default class AdoptionPage extends React.Component {
                       Adopt Me!
                     </button>
                   )}
-              </main>
+              </div>
             </div>
       
             <div className='dog'>
-              <header>
+              <div>
                 <h2 className="animal-name">
                   {dog.name}
                 </h2>
                 <img src={dog.imageURL} alt='' />
-              </header>
-              <main>
+              </div>
+              <div>
                 <h3>More about {dog.name}</h3> 
                 <ul className="animal-attributes">
                   <li className="pet-age">Age: {dog.age} years</li>  
@@ -281,7 +281,7 @@ export default class AdoptionPage extends React.Component {
                       Adopt Me!
                     </button>
                   )}
-              </main>
+              </div>
             </div>
           </section>)}
         </div>
