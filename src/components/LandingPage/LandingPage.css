@@ -1,0 +1,33 @@
+h1 {
+    font-size:50px;
+  }
+  
+  .pet-image {
+    background-image: url("https://i.imgur.com/ZprI0Ni.jpg");
+    background-color: #cccccc;
+    height: 750px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .petful-title {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: .5px .5px #87d6f5;
+    background-color: RGB(0, 0, 0, .5);
+    padding: 15px;
+  }
+  
+  .startButton {
+    cursor: pointer;
+    padding: 10px 12px;
+  }
+  
+  
+  

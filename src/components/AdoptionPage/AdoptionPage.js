@@ -1,5 +1,6 @@
 import React from 'react'
 import PetService from '../../PetService'
+import './AdoptionPage.css'
 
 
 
@@ -162,7 +163,7 @@ export default class AdoptionPage extends React.Component {
 
     if( people.length >= 1) {
       return people.map((person, index) => (
-      <li className='people-list animate__animated ' key={index}>{person}</li>
+      <li className='people-list' key={index}>{person}</li>
       ))
     }
     
@@ -203,8 +204,8 @@ export default class AdoptionPage extends React.Component {
             <h1>Cats And Dogs 2U</h1>
             <h3>Take me to my "Furever" home!</h3>
           </header>
-          <ul>
-            <h4>Next in line is: </h4>
+          <ul className='people'>
+            <li><h4>Next in line is:</h4></li>
             {this.renderPeople()}
           </ul>
           <form
