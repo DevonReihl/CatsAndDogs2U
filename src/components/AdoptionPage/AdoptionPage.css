@@ -2,7 +2,7 @@
 .pageHeader {
     padding: 30px;
     text-align: center;
-    background:#23a88e;
+    background:#9d10fa;
     color: white;
     text-shadow: 1px 1px blue;
     font-size: 20px;
@@ -54,17 +54,22 @@
     margin: 5px;
   }
 
-  /* ul .people-list:last-child {
-      animation: move 2s ease-in-out;
-  } */
-
   @keyframes move {
-    0% { 
-        transform: translate(20em,0);
-      }
-    100% { 
-        transform: translate(0em,0);
-    }  
+    0% {
+      transform: translate(20em, 0);
+    }
+    25% {
+      transform: translate(15em, 0);
+    }
+    50% {
+      transform: translate(10em, 0);
+    }
+    75% {
+      transform: translate(5em, 0);
+    }
+    100% {
+      transform: translate(0em, 0);
+    }
   }
 
   form {
@@ -75,7 +80,7 @@
 
   button {
     box-shadow: inset 0px 1px 0px 0px #ffffff;
-    background: linear-gradient(to bottom, #b8e6fa 5%,#51c8fc 100%);
+    background: linear-gradient(to bottom, #c0ebfd 0%,#39c2fd 100%);
     background-color: #f9f9f9;
     border-radius: 6px;
     border: 1px solid #dcdcdc;
@@ -93,7 +98,7 @@
     text-align: center;
   }
   button:hover {
-    background: linear-gradient(to bottom,#88d6f8 5%, #88d6f8 100%);
+    background: linear-gradient(to bottom,#39c2fd 5%, #c0ebfd 100%);
     background-color: #e9e9e9;
   }
   button:active {

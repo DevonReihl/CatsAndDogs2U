@@ -112,7 +112,13 @@ export default class AdoptionPage extends React.Component {
         'Ellen',
         'Gabriel',
         'Jack',
-        'Lucifer'
+        'Lucifer',
+        'Bobby',
+        'Garth',
+        'Rowena',
+        'Chuck',
+        'Meg',
+        'Jody'
       ]
 
       const randomPerson = 
@@ -163,7 +169,7 @@ export default class AdoptionPage extends React.Component {
 
     if( people.length >= 1) {
       return people.map((person, index) => (
-      <li className='people-list' key={index}>{person}</li>
+      <li className='people-list' key={index} style={{ animation: "move 1s linear" }}>{person}</li>
       ))
     }
     
