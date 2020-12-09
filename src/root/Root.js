@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
-import LandingPage from '../components/LandingPage'
-import AdoptionPage from '../components/AdoptionPage'
+import LandingPage from '../components/LandingPage/LandingPage'
+import AdoptionPage from '../components/AdoptionPage/AdoptionPage'
 
 
 

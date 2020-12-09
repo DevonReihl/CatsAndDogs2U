@@ -1,5 +1,5 @@
 import React from 'react'
-import PetService from '../PetService'
+import PetService from '../../PetService'
 
 
 
@@ -174,7 +174,7 @@ export default class AdoptionPage extends React.Component {
 
   adoptedRender() {
       return (
-        <alert>Congrats you just adopted your very own pet!</alert>
+        <h1>Congrats you just adopted your very own pet!</h1>
         )
   }
 

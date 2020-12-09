@@ -63,6 +63,12 @@ div .cat .dog {
   flex-direction: column;
 }
 
+img {
+  border: 1px solid #ddd;	
+  border-radius: 4px;
+  width: 300px;
+  height: auto;	
+}
 
 ul {
   list-style-type: none;
