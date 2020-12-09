@@ -44,68 +44,6 @@ export default class AdoptionPage extends React.Component {
       })
   }
 
-  // handleCatClick(cat) {
-  //   const removeCat = {
-  //      type: "cats"
-  //   }
-  //   fetch(`${config.API_ENDPOINT}/pets`, {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'content-type': 'application/json'
-  //     },
-  //     body: JSON.stringify(removeCat)
-  //   })
-  //   .then(res => {
-  //     if(!res.ok)
-  //     return res.json().then(e => Promise.reject(e))
-  //   })
-  //   .then(() => {
-  //     return this.componentDidMount()
-      
-  //   })
-  //   .catch(error => {
-  //     console.error({ error })
-  //   })
-  // }
-
-  // handleDogClick(dog) {
-  //   const removeDog = {
-  //     type: "dogs"
-  //  }
-  //  fetch(`${config.API_ENDPOINT}/pets`, {
-  //    method: 'DELETE',
-  //    headers: {
-  //      'content-type': 'application/json'
-  //    },
-  //    body: JSON.stringify(removeDog)
-  //  })
-  //  .then(res => {
-  //    if(!res.ok)
-  //    return res.json().then(e => Promise.reject(e))
-  //  })
-  //  .then(() => {
-  //    return this.componentDidMount()
-     
-  //  })
-  //  .catch(error => {
-  //   console.error({ error })
-  // })
-  // }
-
-  renderPeople =() => {
-    let people = this.state.people
-
-    if( people.length > 1) {
-      return people.map((person, index) => (
-      <li key={index}>{person}</li>
-      ))
-    }
-    
-    if(this.state.people.length ===1) {
-      this.addPeopleToQueue()
-    }
-    
-  }
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
@@ -153,7 +91,7 @@ export default class AdoptionPage extends React.Component {
           console.error({ error })
         })
       })
-    }, 5000)
+    }, 2000)
   }
 
   addPeopleToQueue() {
@@ -190,7 +128,7 @@ export default class AdoptionPage extends React.Component {
             console.error({ error })
           })
         }
-    }, 5000)
+    }, 3000)
   }
 
   handleAdoption = (type) => {
@@ -219,9 +157,24 @@ export default class AdoptionPage extends React.Component {
       })
   }
 
+  renderPeople =() => {
+    let people = this.state.people
+
+    if( people.length >= 1) {
+      return people.map((person, index) => (
+      <li className='people-list animate__animated ' key={index}>{person}</li>
+      ))
+    }
+    
+    if(this.state.people.length ===1) {
+      this.addPeopleToQueue()
+    }
+    
+  }
+
   adoptedRender() {
       return (
-        <h2>Congrats you just adopted your very own pet!</h2>
+        <alert>Congrats you just adopted your very own pet!</alert>
         )
   }
 
@@ -246,10 +199,12 @@ export default class AdoptionPage extends React.Component {
           <p>Loading!!!</p>
         ): (
         <div>
-          <h1>Petful</h1>
-          <h3>Take me to my "Furever" home!</h3>
+          <header className='pageHeader'>
+            <h1>Cats And Dogs 2U</h1>
+            <h3>Take me to my "Furever" home!</h3>
+          </header>
           <ul>
-            <li><h4>Next in line is: </h4></li>
+            <h4>Next in line is: </h4>
             {this.renderPeople()}
           </ul>
           <form
@@ -270,62 +225,64 @@ export default class AdoptionPage extends React.Component {
                 <button className="button" type="submit">
                   Ready to Adopt?
                 </button>
-              </form>
+          </form>
 
-              {this.state.adopted ? (<div>{this.adoptedRender()}<br /></div>): (<div></div>)}
+              {this.state.adopted ? (<div>{this.adoptedRender()}<br /></div>): (
           <section className="animal">
-            
-            <header>
-              <h2 className="animal-name">
-                {cat.name}
-              </h2>
-              <img src={cat.imageURL} alt='' />  
-            </header>
-            <main>
-              <h3>More about {cat.name}</h3> 
-              <ul className="animal-attributes"> 
-                <li className="pet-age">Age: {cat.age}</li>  
-                <li className="pet-breed">Breed: {cat.breed}</li> 
-                <li className="pet-descrip">Desc: {cat.description}</li>
-                <li className="pet-story">Story: {cat.story}</li>  
-              </ul>
-              {this.state.adopter === this.state.people[0] && (
-                  <button
-                    className="button"
-                    type="button"
-                    onClick={(e) => this.handleAdoption('cats')}
-                  >
-                    Adopt Me!
-                  </button>
-                )}
-            </main>
-          </section>
-          <section className="animal">
-            <header>
-              <h2 className="animal-name">
-                {dog.name}
-              </h2>
-              <img src={dog.imageURL} alt='' />
-            </header>
-            <main>
-              <h3>More about {dog.name}</h3> 
-              <ul className="animal-attributes">
-                <li className="pet-age">Age: {dog.age} years</li>  
-                <li className="pet-breed">Breed: {dog.breed}</li> 
-                <li className="pet-descrip">Desc: {dog.description}</li>
-                <li className="pet-story">Story: {dog.story}</li>  
-              </ul>
-              {this.state.adopter === this.state.people[0] && (
-                  <button
-                    className="button"
-                    type="button"
-                    onClick={(e) => this.handleAdoption('dogs')}
-                  >
-                    Adopt Me!
-                  </button>
-                )}
-            </main>
-          </section>
+            <div className='cat'>
+              <header>
+                <h2 className="animal-name">
+                  {cat.name}
+                </h2>
+                <img src={cat.imageURL} alt='' />  
+              </header>
+              <main>
+                <h3>More about {cat.name}</h3> 
+                <ul className="animal-attributes"> 
+                  <li className="pet-age">Age: {cat.age}</li>  
+                  <li className="pet-breed">Breed: {cat.breed}</li> 
+                  <li className="pet-descrip">Desc: {cat.description}</li>
+                  <li className="pet-story">Story: {cat.story}</li>  
+                </ul>
+                {this.state.adopter === this.state.people[0] && (
+                    <button
+                      className="button"
+                      type="button"
+                      onClick={(e) => this.handleAdoption('cats')}
+                    >
+                      Adopt Me!
+                    </button>
+                  )}
+              </main>
+            </div>
+      
+            <div className='dog'>
+              <header>
+                <h2 className="animal-name">
+                  {dog.name}
+                </h2>
+                <img src={dog.imageURL} alt='' />
+              </header>
+              <main>
+                <h3>More about {dog.name}</h3> 
+                <ul className="animal-attributes">
+                  <li className="pet-age">Age: {dog.age} years</li>  
+                  <li className="pet-breed">Breed: {dog.breed}</li> 
+                  <li className="pet-descrip">Desc: {dog.description}</li>
+                  <li className="pet-story">Story: {dog.story}</li>  
+                </ul>
+                {this.state.adopter === this.state.people[0] && (
+                    <button
+                      className="button"
+                      type="button"
+                      onClick={(e) => this.handleAdoption('dogs')}
+                    >
+                      Adopt Me!
+                    </button>
+                  )}
+              </main>
+            </div>
+          </section>)}
         </div>
         )}
       </>

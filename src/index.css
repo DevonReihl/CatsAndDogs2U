@@ -10,7 +10,7 @@ h1 {
 .pet-image {
   background-image: url("https://i.imgur.com/ZprI0Ni.jpg");
   background-color: #cccccc;
-  height: 700px;
+  height: 750px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -24,21 +24,55 @@ h1 {
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  background-color: black;
-  opacity: .6;
+  text-shadow: .5px .5px #87d6f5;
+  background-color: RGB(0, 0, 0, .5);
   padding: 15px;
 }
 
+.startButton {
+  cursor: pointer;
+  padding: 10px 12px;
+}
+/* Header/Logo Title */
+.pageHeader {
+  padding: 30px;
+  text-align: center;
+  background:#23a88e;
+  color: white;
+  text-shadow: 1px 1px blue;
+  font-size: 20px;
+}
 
 section.animal {
+  
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   flex: 1;
   flex-direction: row;
-  width: 100%;
+  text-align: center;
   min-height: 200px;
-  padding: 6% 0;
-  
+  padding: 6% 0;  
+}
+
+div .cat .dog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex: 1;
+  flex-direction: column;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+
+ul .people-list {
+  display: inline;
+  margin: 5px;
+  animation: animate__backInRight;
+  animation-duration: 2s;
 }
 
